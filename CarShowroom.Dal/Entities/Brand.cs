@@ -16,8 +16,12 @@ namespace CarShowroom.Dal.Entities
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
+
         public string? CompanyName { get; set; }
+        [ForeignKey("CompanyName")]
         public Company? Company { get; set; }
+        public IEnumerable<Automobile> Automobiles { get; set; } = new List<Automobile>();
+        public IEnumerable<Model> Models { get; set; } = new List<Model>();
 
         public Brand(string name)
         {

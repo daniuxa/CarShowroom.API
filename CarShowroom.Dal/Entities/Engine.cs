@@ -18,12 +18,14 @@ namespace CarShowroom.Dal.Entities
         [MaxLength(50)]
         public string Name { get; set; }
         [DefaultValue(0)]
-        [Required]
-        public double EngineCapacity { get; set; }
+        public double? EngineCapacity { get; set; }
+        public int? Power { get; set; }
         public FuelType? FuelType { get; set; }
+
         public string? CompanyName { get; set; }
         [ForeignKey("CompanyName")]
         public Company? Company { get; set; }
+        public IEnumerable<Equipment> Equipments { get; set; } = new List<Equipment>();
 
         public Engine(string name)
         {

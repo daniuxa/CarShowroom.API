@@ -19,6 +19,9 @@ namespace CarShowroom.Dal.Entities
         public int BrandId { get; set; }
         [ForeignKey("BrandId")]
         public Brand Brand { get; set; }
+        public IEnumerable<Automobile> Automobiles { get; set; } = new List<Automobile>();
+        public IEnumerable<Equipment> Equipments { get; set; } = new List<Equipment>();
+
 
         public Model(string name, Brand brand)
         {
