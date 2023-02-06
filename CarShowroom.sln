@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarShowroom.API", "CarShowroom.API\CarShowroom.API.csproj", "{5F4960C6-CB08-41F4-BD7D-7AAE7CB917BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarShowroom.Dal", "CarShowroom.Dal\CarShowroom.Dal.csproj", "{9038D5EF-91D6-46A4-9CBB-B8DDDC5BF766}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarShowroom.Bll", "CarShowroom.Bll\CarShowroom.Bll.csproj", "{7BBD0F95-4E63-4A04-AFFB-6AE46231ED0B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{5F4960C6-CB08-41F4-BD7D-7AAE7CB917BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F4960C6-CB08-41F4-BD7D-7AAE7CB917BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F4960C6-CB08-41F4-BD7D-7AAE7CB917BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9038D5EF-91D6-46A4-9CBB-B8DDDC5BF766}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9038D5EF-91D6-46A4-9CBB-B8DDDC5BF766}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9038D5EF-91D6-46A4-9CBB-B8DDDC5BF766}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9038D5EF-91D6-46A4-9CBB-B8DDDC5BF766}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BBD0F95-4E63-4A04-AFFB-6AE46231ED0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BBD0F95-4E63-4A04-AFFB-6AE46231ED0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BBD0F95-4E63-4A04-AFFB-6AE46231ED0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BBD0F95-4E63-4A04-AFFB-6AE46231ED0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
