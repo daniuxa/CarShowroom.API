@@ -13,7 +13,7 @@ namespace CarShowroom.Dal.TypeConfigurations
     {
         public void Configure(EntityTypeBuilder<Brand> builder)
         {
-            builder.HasOne(x => x.Company).WithMany(y => y.Brands);
+            builder.HasOne(x => x.Company).WithMany(y => y.Brands).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

@@ -27,5 +27,9 @@ namespace CarShowroom.Dal.Entities
         {
             Name = name;
         }
+        private Brand()
+        {
+                
+        }
     }
 }

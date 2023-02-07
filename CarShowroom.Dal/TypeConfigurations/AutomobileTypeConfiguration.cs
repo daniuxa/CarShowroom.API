@@ -13,9 +13,9 @@ namespace CarShowroom.Dal.TypeConfigurations
     {
         public void Configure(EntityTypeBuilder<Automobile> builder)
         {
-            builder.HasOne(x => x.Brand).WithMany(y => y.Automobiles);
-            builder.HasOne(x => x.Model).WithMany(y => y.Automobiles);
-            builder.HasOne(x => x.Equipment).WithMany(y => y.Automobiles);
+            builder.HasOne(x => x.Brand).WithMany(y => y.Automobiles).OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(x => x.Model).WithMany(y => y.Automobiles).OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(x => x.Equipment).WithMany(y => y.Automobiles).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

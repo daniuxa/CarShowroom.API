@@ -21,5 +21,9 @@ namespace CarShowroom.Dal.Entities
         {
             CompanyName = companyName;
         }
+        private Company()
+        {
+
+        }
     }
 }

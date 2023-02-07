@@ -31,5 +31,9 @@ namespace CarShowroom.Dal.Entities
             Engine = engine;
             Model = model;
         }
+        public Equipment()
+        {
+
+        }
     }
 }

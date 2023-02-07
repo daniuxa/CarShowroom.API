@@ -13,7 +13,7 @@ namespace CarShowroom.Dal.TypeConfigurations
     {
         public void Configure(EntityTypeBuilder<Engine> builder)
         {
-            builder.HasOne(x => x.Company).WithMany(y => y.Engines);
+            builder.HasOne(x => x.Company).WithMany(y => y.Engines).OnDelete(DeleteBehavior.Restrict);
             builder.HasCheckConstraint("CK_Engine_EngineCapacity", "EngineCapacity > -1 AND EngineCapacity < 1000000");
             builder.HasCheckConstraint("CK_Engine_Power", "Power > -1 AND Power < 2000000");
         }

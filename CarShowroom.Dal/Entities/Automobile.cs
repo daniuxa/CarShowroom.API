@@ -37,5 +37,9 @@ namespace CarShowroom.Dal.Entities
             Model = model;
             Equipment = equipment;
         }
+        private Automobile()
+        {
+
+        }
     }
 }

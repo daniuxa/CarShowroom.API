@@ -31,5 +31,9 @@ namespace CarShowroom.Dal.Entities
         {
             Name = name;
         }
+        private Engine()
+        {
+
+        }
     }
 }
