@@ -11,5 +11,6 @@ namespace CarShowroom.Bll.Interfaces
     public interface ICompaniesService
     {
         Task<(IEnumerable<Company>, PaginationMetadata)> GetCompaniesAsync(int pageNumber, int pageSize);
+        Task<Company?> GetCompanyAsync(string name, bool includeEngines, bool includeBrands);
     }
 }

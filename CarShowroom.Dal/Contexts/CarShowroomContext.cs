@@ -75,6 +75,17 @@ namespace CarShowroom.Dal.Contexts
                     CompanyName = "PSA Groupe"
                 }
                 );
+
+            modelBuilder.Entity<Engine>().HasData(
+                    new Engine()
+                    {
+                        Id = 1,
+                        Name = "CCZB",
+                        EngineCapacity = 2,
+                        Power = 210,
+                        FuelType = FuelType.Gasoline,
+                        CompanyName = "VAG"
+                    });
         }
     }
 }

@@ -13,6 +13,9 @@ namespace CarShowroom.Bll.Profiles
     {
         public CompaniesProfile()
         {
+            CreateMap<Company, CompanyWithoutCollectionsDTO>();
+            CreateMap<Company, CompanyWithoutBrandsDTO>();
+            CreateMap<Company, CompanyWithoutEnginesDTO>();
             CreateMap<Company, CompanyDTO>();
         }
     }

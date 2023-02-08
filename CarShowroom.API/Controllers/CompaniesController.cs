@@ -38,7 +38,33 @@ namespace CarShowroom.API
 
             Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(paginationMetadata));
 
-            return Ok(_mapper.Map<IEnumerable<CompanyDTO>>(Companies));
+            return Ok(_mapper.Map<IEnumerable<CompanyWithoutCollectionsDTO>>(Companies));
+        }
+
+        [HttpGet("{name}")]
+        public async Task<IActionResult> GetCompany(string name, bool includeEngines = false, bool includeBrands = false)
+        {
+            var company = await _companiesService.GetCompanyAsync(name, includeEngines, includeBrands);
+            if (company == null)
+            {
+                return NotFound();
+            }
+
+            if (includeEngines == false && includeBrands == true)
+            {
+                return Ok(_mapper.Map<CompanyWithoutEnginesDTO>(company));
+            }
+            if (includeEngines == true && includeBrands == false)
+            {
+                return Ok(_mapper.Map<CompanyWithoutBrandsDTO>(company));
+            }
+            if (includeEngines == false && includeBrands == false)
+            {
+                return Ok(_mapper.Map<CompanyWithoutCollectionsDTO>(company));
+            }
+            //TODO : Change Engine to Engine DTO
+            
+            return Ok(_mapper.Map<CompanyDTO>(company));
         }
     }
 }

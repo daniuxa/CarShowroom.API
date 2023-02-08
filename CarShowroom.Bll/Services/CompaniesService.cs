@@ -34,5 +34,26 @@ namespace CarShowroom.Bll.Services
             return (collectionToReturn, paginationMetadata);
             //return await _carShowroomContext.Companies.OrderBy(x => x.CompanyName).ToListAsync();
         }
+
+        public async Task<Company?> GetCompanyAsync(string name, bool includeEngines, bool includeBrands)
+        {
+            Company? company = await _carShowroomContext.Companies.FirstOrDefaultAsync(x => x.CompanyName == name);
+
+            if (company == null)
+            {
+                return null;
+            }
+
+            if (includeEngines)
+            {
+                _carShowroomContext.Entry(company).Collection(c => c.Engines).Load();
+            }
+            if (includeBrands)
+            {
+                _carShowroomContext.Entry(company).Collection(c => c.Brands).Load();
+            }
+
+            return company;
+        }
     }
 }
