@@ -15,22 +15,23 @@ namespace CarShowroom.Dal.Entities
         public int Id { get; set; }
         [Required]
         [MaxLength(100)]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
         public int BrandId { get; set; }
         [ForeignKey("BrandId")]
-        public Brand Brand { get; set; }
+        [Required]
+        public Brand Brand { get; set; } = null!;
         public IEnumerable<Automobile> Automobiles { get; set; } = new List<Automobile>();
         public IEnumerable<Equipment> Equipments { get; set; } = new List<Equipment>();
 
 
-        public Model(string name, Brand brand)
+        /*public Model(string name, Brand brand)
         {
             Name = name;
             Brand = brand;
-        }
-        private Model()
+        }*/
+        /*private Model()
         {
 
-        }
+        }*/
     }
 }

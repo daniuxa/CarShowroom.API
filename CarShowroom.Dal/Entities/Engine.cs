@@ -27,13 +27,13 @@ namespace CarShowroom.Dal.Entities
         public Company? Company { get; set; }
         public IEnumerable<Equipment> Equipments { get; set; } = new List<Equipment>();
 
-        public Engine(string name)
+        /*public Engine(string name)
         {
             Name = name;
         }
         private Engine()
         {
 
-        }
+        }*/
     }
 }

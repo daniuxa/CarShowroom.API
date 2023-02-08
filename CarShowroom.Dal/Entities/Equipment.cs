@@ -18,14 +18,16 @@ namespace CarShowroom.Dal.Entities
 
         public int EngineId { get; set; }
         [ForeignKey("EngineId")]
+        [Required]
         public Engine Engine { get; set; }
 
         public int ModelId { get; set; }
         [ForeignKey("ModelId")]
+        [Required]
         public Model Model { get; set; }
         public IEnumerable<Automobile> Automobiles { get; set; } = new List<Automobile>();
 
-        public Equipment(string name, Engine engine, Model model)
+        /*public Equipment(string name, Engine engine, Model model)
         {
             Name = name;
             Engine = engine;
@@ -34,6 +36,6 @@ namespace CarShowroom.Dal.Entities
         public Equipment()
         {
 
-        }
+        }*/
     }
 }

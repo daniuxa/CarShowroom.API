@@ -22,14 +22,5 @@ namespace CarShowroom.Dal.Entities
         public Company? Company { get; set; }
         public IEnumerable<Automobile> Automobiles { get; set; } = new List<Automobile>();
         public IEnumerable<Model> Models { get; set; } = new List<Model>();
-
-        public Brand(string name)
-        {
-            Name = name;
-        }
-        private Brand()
-        {
-                
-        }
     }
 }

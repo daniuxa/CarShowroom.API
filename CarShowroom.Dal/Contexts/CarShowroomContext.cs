@@ -24,6 +24,57 @@ namespace CarShowroom.Dal.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(CarShowroomContext).Assembly);
+
+            modelBuilder.Entity<Company>().HasData(
+                new Company()
+                {
+                    CompanyName = "VAG",
+                    CompanySite = "vag.com"
+                },
+                new Company()
+                {
+                    CompanyName = "Daimler",
+                    CompanySite = "daimler.com"
+                },
+                new Company()
+                {
+                    CompanyName = "PSA Groupe",
+                    CompanySite = "psa.com"
+                }
+                );
+
+            modelBuilder.Entity<Brand>().HasData(
+                new Brand()
+                {
+                    Id = 1,
+                    Name = "Volkswagen",
+                    CompanyName = "VAG"
+                },
+                new Brand()
+                {
+                    Id = 2,
+                    Name = "Audi",
+                    CompanyName = "VAG"
+                },
+                new Brand()
+                {
+                    Id = 3,
+                    Name = "Mercedes-Benz",
+                    CompanyName = "Daimler"
+                },
+                new Brand()
+                {
+                    Id = 4,
+                    Name = "Citroen",
+                    CompanyName = "PSA Groupe"
+                },
+                new Brand()
+                {
+                    Id = 5,
+                    Name = "Peugeot",
+                    CompanyName = "PSA Groupe"
+                }
+                );
         }
     }
 }

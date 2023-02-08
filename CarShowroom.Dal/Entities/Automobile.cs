@@ -20,17 +20,20 @@ namespace CarShowroom.Dal.Entities
 
         public int BrandId { get; set; }
         [ForeignKey("BrandId")]
+        [Required]
         public Brand Brand { get; set; }
 
         public int ModelId { get; set; }
         [ForeignKey("ModelId")]
+        [Required]
         public Model Model { get; set; }
 
         public int EquipmentId { get; set; }
         [ForeignKey("EquipmentId")]
+        [Required]
         public Equipment Equipment { get; set; }
 
-        public Automobile(string vin, Brand brand, Model model, Equipment equipment)
+/*        public Automobile(string vin, Brand brand, Model model, Equipment equipment)
         {
             VIN = vin;
             Brand = brand;
@@ -40,6 +43,6 @@ namespace CarShowroom.Dal.Entities
         private Automobile()
         {
 
-        }
+        }*/
     }
 }
