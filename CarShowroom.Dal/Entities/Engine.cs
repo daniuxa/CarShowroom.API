@@ -16,7 +16,7 @@ namespace CarShowroom.Dal.Entities
         public int Id { get; set; }
         [Required]
         [MaxLength(50)]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
         [DefaultValue(0)]
         public double? EngineCapacity { get; set; }
         public int? Power { get; set; }

@@ -15,7 +15,7 @@ namespace CarShowroom.Dal.Entities
         public int Id { get; set; }
         [Required]
         [MaxLength(100)]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
         public string? CompanyName { get; set; }
         [ForeignKey("CompanyName")]
