@@ -1,5 +1,8 @@
+using CarShowroom.Bll.Interfaces;
+using CarShowroom.Bll.Services;
 using CarShowroom.Dal.Contexts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using System.Reflection;
 
@@ -17,7 +20,9 @@ builder.Logging.AddConsole();
 builder.Host.UseSerilog();
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(configure => configure.ReturnHttpNotAcceptable = true).
+    AddNewtonsoftJson().
+    AddXmlSerializerFormatters();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(setupAction =>
@@ -35,6 +40,10 @@ builder.Services.AddSwaggerGen(setupAction =>
 });
 builder.Services.AddDbContext<CarShowroomContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.AddScoped<ICompaniesService, CompaniesService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -49,8 +58,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
+
 app.UseAuthorization();
 
 app.MapControllers();
+//app.UseEndpoints(endpoints => endpoints.MapControllers());
 
 app.Run();
