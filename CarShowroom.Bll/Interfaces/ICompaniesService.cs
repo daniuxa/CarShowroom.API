@@ -10,7 +10,10 @@ namespace CarShowroom.Bll.Interfaces
 {
     public interface ICompaniesService
     {
+        Task AddCompanyAsync(Company company);
+        void DeleteCompany(Company company);
         Task<(IEnumerable<Company>, PaginationMetadata)> GetCompaniesAsync(int pageNumber, int pageSize);
-        Task<Company?> GetCompanyAsync(string name, bool includeEngines, bool includeBrands);
+        Task<Company?> GetCompanyAsync(string name, bool includeEngines = false, bool includeBrands = false);
+        Task<bool> SaveChangesAsync();
     }
 }

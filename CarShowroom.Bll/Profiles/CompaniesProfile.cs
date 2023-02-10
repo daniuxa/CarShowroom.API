@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CarShowroom.Bll.Models;
+using CarShowroom.Bll.Models.CompanyDTOs;
 using CarShowroom.Dal.Entities;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ namespace CarShowroom.Bll.Profiles
             CreateMap<Company, CompanyWithoutBrandsDTO>();
             CreateMap<Company, CompanyWithoutEnginesDTO>();
             CreateMap<Company, CompanyDTO>();
+            CreateMap<CompanyCreationDTO, Company>();
+            CreateMap<Company, CompanyForUpdateDTO>();
         }
     }
 }

@@ -35,7 +35,7 @@ namespace CarShowroom.Bll.Services
             //return await _carShowroomContext.Companies.OrderBy(x => x.CompanyName).ToListAsync();
         }
 
-        public async Task<Company?> GetCompanyAsync(string name, bool includeEngines, bool includeBrands)
+        public async Task<Company?> GetCompanyAsync(string name, bool includeEngines = false, bool includeBrands = false)
         {
             Company? company = await _carShowroomContext.Companies.FirstOrDefaultAsync(x => x.CompanyName == name);
 
@@ -54,6 +54,21 @@ namespace CarShowroom.Bll.Services
             }
 
             return company;
+        }
+
+        public async Task AddCompanyAsync(Company company)
+        {
+            await _carShowroomContext.Companies.AddAsync(company);
+        }
+
+        public async Task<bool> SaveChangesAsync()
+        {
+            return await _carShowroomContext.SaveChangesAsync() >= 0;
+        }
+
+        public void DeleteCompany(Company company)
+        {
+            _carShowroomContext.Companies.Remove(company);
         }
     }
 }

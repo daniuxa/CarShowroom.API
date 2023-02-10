@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CarShowroom.Bll.Interfaces;
 using CarShowroom.Bll.Models;
+using CarShowroom.Bll.Models.CompanyDTOs;
 using CarShowroom.Dal.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -41,10 +42,10 @@ namespace CarShowroom.API
             return Ok(_mapper.Map<IEnumerable<CompanyWithoutCollectionsDTO>>(Companies));
         }
 
-        [HttpGet("{name}")]
-        public async Task<IActionResult> GetCompany(string name, bool includeEngines = false, bool includeBrands = false)
+        [HttpGet("{companyName}", Name = "GetCompany")]
+        public async Task<IActionResult> GetCompany(string companyName, bool includeEngines = false, bool includeBrands = false)
         {
-            var company = await _companiesService.GetCompanyAsync(name, includeEngines, includeBrands);
+            var company = await _companiesService.GetCompanyAsync(companyName, includeEngines, includeBrands);
             if (company == null)
             {
                 return NotFound();
@@ -62,9 +63,57 @@ namespace CarShowroom.API
             {
                 return Ok(_mapper.Map<CompanyWithoutCollectionsDTO>(company));
             }
-            //TODO : Change Engine to Engine DTO
             
             return Ok(_mapper.Map<CompanyDTO>(company));
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<CompanyWithoutCollectionsDTO>> CreateCompany(CompanyCreationDTO company)
+        {
+            var finalCompany = _mapper.Map<Company>(company);
+
+            await _companiesService.AddCompanyAsync(finalCompany);
+
+            await _companiesService.SaveChangesAsync();
+
+            var companyToReturn = _mapper.Map<CompanyWithoutCollectionsDTO>(finalCompany);
+
+            return CreatedAtRoute("GetCompany", new {name = company.CompanyName}, companyToReturn);
+        }
+
+        [HttpDelete("{companyName}")]
+        public async Task<IActionResult> DeleteCompany(string companyName)
+        {
+            var companyEntity = await _companiesService.GetCompanyAsync(companyName);
+
+            if (companyEntity == null)
+            {
+                return NotFound();
+            }
+
+            _companiesService.DeleteCompany(companyEntity);
+
+            await _companiesService.SaveChangesAsync();
+
+            return NoContent();
+        }
+        [HttpPut("{companyName}")]
+        public async Task<ActionResult> UpdateCompany(string companyName, CompanyForUpdateDTO company)
+        {
+            var companyEntity = await _companiesService.GetCompanyAsync(companyName);
+
+            if (companyEntity == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(companyEntity, company);
+
+            await _companiesService.SaveChangesAsync();
+
+            //TODO: Chande the result
+
+            return NoContent();
         }
     }
 }
