@@ -8,7 +8,6 @@ namespace CarShowroom.Bll.Models.CompanyDTOs
 {
     public class CompanyForUpdateDTO
     {
-        public string CompanyName { get; set; } = null!;
         public string? CompanySite { get; set; }
     }
 }

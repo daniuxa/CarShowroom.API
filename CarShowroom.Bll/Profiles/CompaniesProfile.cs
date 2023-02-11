@@ -19,7 +19,7 @@ namespace CarShowroom.Bll.Profiles
             CreateMap<Company, CompanyWithoutEnginesDTO>();
             CreateMap<Company, CompanyDTO>();
             CreateMap<CompanyCreationDTO, Company>();
-            CreateMap<Company, CompanyForUpdateDTO>();
+            CreateMap<CompanyForUpdateDTO, Company>();
         }
     }
 }

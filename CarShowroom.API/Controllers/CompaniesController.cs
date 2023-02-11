@@ -107,13 +107,12 @@ namespace CarShowroom.API
                 return NotFound();
             }
 
-            _mapper.Map(companyEntity, company);
+            _mapper.Map(company, companyEntity);
 
             await _companiesService.SaveChangesAsync();
 
-            //TODO: Chande the result
-
             return NoContent();
         }
+        //Make Patch in other controller
     }
 }
