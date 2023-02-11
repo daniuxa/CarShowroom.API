@@ -16,11 +16,15 @@ namespace CarShowroom.Bll.Services
 
         public EnginesService(CarShowroomContext carShowroomContext)
         {
-            carShowroomContext = carShowroomContext ?? throw new ArgumentNullException(nameof(carShowroomContext));
+            _carShowroomContext = carShowroomContext ?? throw new ArgumentNullException(nameof(carShowroomContext));
         }
         public async Task<IEnumerable<Engine>> GetEnginesForCompany(string companyName)
         {
             return await _carShowroomContext.Engines.Where(x => x.CompanyName == companyName).ToListAsync();
+        }
+        public async Task<Engine?> GetEngine(int engineId)
+        {
+            return await _carShowroomContext.Engines.FirstOrDefaultAsync(x => x.Id == engineId);
         }
     }
 }

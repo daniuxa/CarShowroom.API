@@ -43,6 +43,7 @@ builder.Services.AddDbContext<CarShowroomContext>(options => options.UseSqlServe
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped<ICompaniesService, CompaniesService>();
+builder.Services.AddScoped<IEnginesService, EnginesService>();
 
 var app = builder.Build();
 

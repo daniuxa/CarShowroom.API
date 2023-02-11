@@ -14,6 +14,7 @@ namespace CarShowroom.Bll.Interfaces
         void DeleteCompany(Company company);
         Task<(IEnumerable<Company>, PaginationMetadata)> GetCompaniesAsync(int pageNumber, int pageSize);
         Task<Company?> GetCompanyAsync(string name, bool includeEngines = false, bool includeBrands = false);
+        Task<bool> IsExistCompany(string companyName);
         Task<bool> SaveChangesAsync();
     }
 }

@@ -9,6 +9,7 @@ namespace CarShowroom.Bll.Interfaces
 {
     public interface IEnginesService
     {
+        Task<Engine?> GetEngine(int engineId);
         Task<IEnumerable<Engine>> GetEnginesForCompany(string companyName);
     }
 }
