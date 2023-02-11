@@ -78,7 +78,7 @@ namespace CarShowroom.API
 
             var companyToReturn = _mapper.Map<CompanyWithoutCollectionsDTO>(finalCompany);
 
-            return CreatedAtRoute("GetCompany", new {name = company.CompanyName}, companyToReturn);
+            return CreatedAtRoute("GetCompany", new {companyName = company.CompanyName}, companyToReturn);
         }
 
         [HttpDelete("{companyName}")]
