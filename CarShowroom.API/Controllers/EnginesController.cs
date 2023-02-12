@@ -113,7 +113,7 @@ namespace CarShowroom.API.Controllers
         [HttpPatch("api/Engines/{engineId}")]
         public async Task<IActionResult> PartiallyUpdateEngine(int engineId, JsonPatchDocument<EngineForUpdateDTO> patchDocument)
         {
-            var engineEntity = _enginesService.GetEngineAsync(engineId);
+            var engineEntity = await _enginesService.GetEngineAsync(engineId);
 
             if (engineEntity == null)
             {
