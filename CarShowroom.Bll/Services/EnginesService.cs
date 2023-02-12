@@ -46,5 +46,10 @@ namespace CarShowroom.Bll.Services
         {
             return (await _carShowroomContext.SaveChangesAsync() >= 0);
         }
+
+        public void DeleteEngine(Engine engine)
+        {
+            _carShowroomContext.Engines.Remove(engine);
+        }
     }
 }

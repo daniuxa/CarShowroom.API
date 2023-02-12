@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace CarShowroom.Bll.Models.EngineDTOs
 {
-    public class EngineDTO
+    public class EngineForUpdateDTO
     {
-        public int Id { get; set; }
         public string Name { get; set; } = null!;
         public double? EngineCapacity { get; set; }
         public int? Power { get; set; }

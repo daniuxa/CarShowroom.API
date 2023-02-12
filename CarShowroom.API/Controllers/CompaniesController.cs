@@ -113,6 +113,5 @@ namespace CarShowroom.API
 
             return NoContent();
         }
-        //Make Patch in other controller
     }
 }

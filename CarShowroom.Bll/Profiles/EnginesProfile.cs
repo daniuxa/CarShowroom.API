@@ -16,6 +16,8 @@ namespace CarShowroom.Bll.Profiles
         {
             CreateMap<Engine, EngineWithoutCompanyDTO>();
             CreateMap<Engine, EngineDTO>();
+            CreateMap<Engine, EngineForUpdateDTO>();
+            CreateMap<EngineForUpdateDTO, Engine>();
             CreateMap<EngineCreationDTO, Engine>();
         }
     }

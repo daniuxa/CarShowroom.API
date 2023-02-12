@@ -71,7 +71,7 @@ namespace CarShowroom.Bll.Services
             _carShowroomContext.Companies.Remove(company);
         }
 
-        public async Task<bool> IsExistCompany(string companyName)
+        public async Task<bool> IsExistCompanyAsync(string companyName)
         {
             return await _carShowroomContext.Companies.AnyAsync(c => c.CompanyName == companyName);
         }

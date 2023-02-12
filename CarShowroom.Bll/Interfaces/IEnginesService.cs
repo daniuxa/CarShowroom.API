@@ -10,6 +10,7 @@ namespace CarShowroom.Bll.Interfaces
     public interface IEnginesService
     {
         Task AddEngine(Engine engine);
+        void DeleteEngine(Engine engine);
         Task<Engine?> GetEngineAsync(int engineId);
         Task<Engine?> GetEngineForCompanyAsync(int engineId, string companyName);
         Task<IEnumerable<Engine>> GetEnginesAsync();
