@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CarShowroom.Bll.Models;
+using CarShowroom.Bll.Models.EngineDTOs;
 using CarShowroom.Dal.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,9 @@ namespace CarShowroom.Bll.Profiles
     {
         public EnginesProfile()
         {
+            CreateMap<Engine, EngineWithoutCompanyDTO>();
             CreateMap<Engine, EngineDTO>();
+            CreateMap<EngineCreationDTO, Engine>();
         }
     }
 }
