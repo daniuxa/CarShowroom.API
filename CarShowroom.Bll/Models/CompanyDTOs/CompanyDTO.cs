@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarShowroom.Dal.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,6 @@ namespace CarShowroom.Bll.Models
         public string CompanyName { get; set; } = null!;
         public string? CompanySite { get; set; }
         public IEnumerable<EngineWithoutCompanyDTO> Engines { get; set; } = new List<EngineWithoutCompanyDTO>();
-        public IEnumerable<Brand> Brands { get; set; } = new List<Brand>();
+        public IEnumerable<BrandWithoutCompNameDTO> Brands { get; set; } = new List<BrandWithoutCompNameDTO>();
     }
 }

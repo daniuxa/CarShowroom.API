@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarShowroom.Bll.Models.BrandDTOs
+namespace CarShowroom.Bll.Models.ModelDTOs
 {
-    public class BrandDTO
+    public class ModelDTO
     {
         public int Id { get; set; }
         public string Name { get; set; } = null!;
-        public string? CompanyName { get; set; }
     }
 }

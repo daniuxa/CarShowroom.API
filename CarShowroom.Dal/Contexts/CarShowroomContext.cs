@@ -86,6 +86,14 @@ namespace CarShowroom.Dal.Contexts
                         FuelType = FuelType.Gasoline,
                         CompanyName = "VAG"
                     });
+
+            modelBuilder.Entity<Model>().HasData(
+                new Model()
+                {
+                    Id = 1,
+                    Name = "Passat",
+                    BrandId = 1
+                });
         }
     }
 }

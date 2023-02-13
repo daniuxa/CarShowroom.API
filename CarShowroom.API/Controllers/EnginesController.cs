@@ -17,7 +17,6 @@ namespace CarShowroom.API.Controllers
         private readonly IMapper _mapper;
         const int maxEnginesPageSize = 50;
 
-        //TODO: Make a pagination
         public EnginesController(ICompaniesService companiesService, IEnginesService enginesService, IMapper mapper)
         {
             _companiesService = companiesService ?? throw new ArgumentNullException(nameof(companiesService));
@@ -82,8 +81,7 @@ namespace CarShowroom.API.Controllers
             return Ok(_mapper.Map<EngineDTO>(engine));  
         }
 
-        [HttpPost]
-        [Route("api/Engines")]
+        [HttpPost("api/Engines")]
         public async Task<ActionResult<EngineDTO>> CreateEngine(EngineCreationDTO engine)
         {
             /*if (engine.CompanyName != null && !await _companiesService.IsExistCompanyAsync(engine.CompanyName))
