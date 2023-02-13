@@ -1,4 +1,5 @@
-﻿using CarShowroom.Dal.Entities;
+﻿using CarShowroom.Bll.Services;
+using CarShowroom.Dal.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace CarShowroom.Bll.Interfaces
         void DeleteEngine(Engine engine);
         Task<Engine?> GetEngineAsync(int engineId);
         Task<Engine?> GetEngineForCompanyAsync(int engineId, string companyName);
-        Task<IEnumerable<Engine>> GetEnginesAsync();
+        Task<(IEnumerable<Engine>, PaginationMetadata)> GetEnginesAsync(int pageNumber, int pageSize);
         Task<IEnumerable<Engine>> GetEnginesForCompanyAsync(string companyName);
         Task<bool> SaveChangesAsync();
     }

@@ -13,7 +13,7 @@ namespace CarShowroom.Bll.Profiles
     {
         public BrandsProfile()
         {
-            CreateMap<Brand, BrandDTO>();
+            CreateMap<Brand, Brand>();
         }
     }
 }

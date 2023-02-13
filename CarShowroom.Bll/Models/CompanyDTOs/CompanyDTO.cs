@@ -11,6 +11,6 @@ namespace CarShowroom.Bll.Models
         public string CompanyName { get; set; } = null!;
         public string? CompanySite { get; set; }
         public IEnumerable<EngineWithoutCompanyDTO> Engines { get; set; } = new List<EngineWithoutCompanyDTO>();
-        public IEnumerable<BrandDTO> Brands { get; set; } = new List<BrandDTO>();
+        public IEnumerable<Brand> Brands { get; set; } = new List<Brand>();
     }
 }

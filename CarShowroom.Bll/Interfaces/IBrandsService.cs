@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarShowroom.Bll.Models
+namespace CarShowroom.Bll.Interfaces
 {
-    public class Brand
+    public interface IBrandsService
     {
-        public string Name { get; set; } = null!;
+
     }
 }

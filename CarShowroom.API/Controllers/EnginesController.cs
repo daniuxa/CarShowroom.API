@@ -5,7 +5,7 @@ using CarShowroom.Bll.Models.EngineDTOs;
 using CarShowroom.Dal.Entities;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Text.Json;
 
 namespace CarShowroom.API.Controllers
 {
@@ -15,7 +15,9 @@ namespace CarShowroom.API.Controllers
         private readonly ICompaniesService _companiesService;
         private readonly IEnginesService _enginesService;
         private readonly IMapper _mapper;
+        const int maxEnginesPageSize = 50;
 
+        //TODO: Make a pagination
         public EnginesController(ICompaniesService companiesService, IEnginesService enginesService, IMapper mapper)
         {
             _companiesService = companiesService ?? throw new ArgumentNullException(nameof(companiesService));
@@ -54,9 +56,15 @@ namespace CarShowroom.API.Controllers
         }
 
         [HttpGet("api/Engines")]
-        public async Task<ActionResult<IEnumerable<EngineDTO>>> GetEngines()
+        public async Task<ActionResult<IEnumerable<EngineDTO>>> GetEngines(int pageNumber = 1, int pageSize = 10)
         {
-            var engines = await _enginesService.GetEnginesAsync();
+            if (pageSize > maxEnginesPageSize)
+            {
+                pageSize = maxEnginesPageSize;
+            }
+            var (engines, paginationMetadata) = await _enginesService.GetEnginesAsync(pageNumber, pageSize);
+
+            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(paginationMetadata));
 
             return Ok(_mapper.Map<IEnumerable<EngineDTO>>(engines));
         }

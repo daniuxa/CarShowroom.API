@@ -27,9 +27,19 @@ namespace CarShowroom.Bll.Services
             return await _carShowroomContext.Engines.FirstOrDefaultAsync(x => x.Id == engineId && x.CompanyName == companyName);
         }
 
-        public async Task<IEnumerable<Engine>> GetEnginesAsync()
+        public async Task<(IEnumerable<Engine>, PaginationMetadata)> GetEnginesAsync(int pageNumber = 1, int pageSize = 10)
         {
-            return await _carShowroomContext.Engines.ToListAsync();
+            var collection = _carShowroomContext.Engines as IQueryable<Engine>;
+
+            var totalItemCount = await collection.CountAsync();
+
+            var paginationMetadata = new PaginationMetadata(totalItemCount, pageSize, pageNumber);
+
+            var collectionToReturn = await collection.
+                Skip(pageSize * (pageNumber - 1)).
+                Take(pageSize).ToListAsync();
+
+            return (collectionToReturn, paginationMetadata);
         }
 
         public async Task<Engine?> GetEngineAsync(int engineId)

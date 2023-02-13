@@ -44,6 +44,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped<ICompaniesService, CompaniesService>();
 builder.Services.AddScoped<IEnginesService, EnginesService>();
+builder.Services.AddScoped<IBrandsService, BrandsService>();
 
 var app = builder.Build();
 
