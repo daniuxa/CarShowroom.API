@@ -6,6 +6,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using System.Reflection;
 
+//TODO:
+//1) Make a controller for automobiles with a new diferent requests
+//2) Make a xml comments
+//3) Add API security
+//4) Add a mail service
+//5) Add tests
+//6) Make a containerisation 
+
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Debug()
     .WriteTo.Console()
@@ -45,6 +53,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<ICompaniesService, CompaniesService>();
 builder.Services.AddScoped<IEnginesService, EnginesService>();
 builder.Services.AddScoped<IBrandsService, BrandsService>();
+builder.Services.AddScoped<IAutomobileService, AutomobilesService>();
 
 var app = builder.Build();
 

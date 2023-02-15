@@ -94,6 +94,16 @@ namespace CarShowroom.Dal.Contexts
                     Name = "Passat",
                     BrandId = 1
                 });
+
+            modelBuilder.Entity<Equipment>().HasData(
+                new Equipment() 
+                { 
+                    Id = 1,
+                    Name = "Comfort",
+                    EngineId = 1,
+                    ModelId = 1
+                }
+                );
         }
     }
 }
