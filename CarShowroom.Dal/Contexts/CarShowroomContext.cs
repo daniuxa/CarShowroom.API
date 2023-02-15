@@ -104,6 +104,17 @@ namespace CarShowroom.Dal.Contexts
                     ModelId = 1
                 }
                 );
+            modelBuilder.Entity<Automobile>().HasData(
+                new Automobile()
+                {
+                    VIN = "QWERTYUIOPASDFGHJ",
+                    ProdDate = DateTime.Now.AddYears(-1),
+                    BodyType = BodyType.Sedan,
+                    Color = Color.Black,
+                    BrandId = 1,
+                    ModelId = 1,
+                    EquipmentId = 1
+                });
         }
     }
 }

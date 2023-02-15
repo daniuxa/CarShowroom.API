@@ -20,7 +20,11 @@ namespace CarShowroom.Bll.Services
         }
         public async Task<(IEnumerable<Automobile>, PaginationMetadata)> GetAutomobilesAsync(int pageNumber = 1, int pageSize = 10)
         {
-            var collection = _carShowroomContext.Automobiles as IQueryable<Automobile>;
+            var collection = _carShowroomContext.Automobiles
+                .Include(x => x.Brand)
+                .Include(x => x.Model)
+                .Include(x => x.Equipment) 
+                as IQueryable<Automobile>;
 
             var totalItemCount = await collection.CountAsync();
 
