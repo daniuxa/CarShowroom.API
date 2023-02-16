@@ -1,4 +1,5 @@
 ﻿using CarShowroom.Bll.Interfaces;
+using CarShowroom.Dal;
 using CarShowroom.Dal.Contexts;
 using CarShowroom.Dal.Entities;
 using CarShowroom.Dal.Enums;
@@ -36,9 +37,8 @@ namespace CarShowroom.Bll.Services
 
             var paginationMetadata = new PaginationMetadata(totalItemCount, pageSize, pageNumber);
 
-            var paginatedCollection = await collection.
-                Skip(pageSize * (pageNumber - 1)).
-                Take(pageSize).ToListAsync();
+            var paginatedCollection = await collection.GetPaginatedEnginesAsync(pageNumber, pageSize);
+
 
             if (orderEngine == null)
             {
@@ -52,8 +52,7 @@ namespace CarShowroom.Bll.Services
                 throw new ArgumentException($"Property {orderEngine} not found on type {typeof(Engine).Name}");
             }
 
-            var orderedPaginatedCollection = paginatedCollection
-                .OrderBy(x => propertyInfo.GetValue(x));
+            var orderedPaginatedCollection = paginatedCollection.OrderBy(x => propertyInfo.GetValue(x));
 
             return (orderedPaginatedCollection, paginationMetadata);
         }

@@ -10,15 +10,10 @@ namespace CarShowroom.Dal.Entities
 {
     public enum Color
     {
-        //[Description("White")]
         White,
-        //[Description("White")]
         Black,
-        //[Description("White")]
         Grey,
-        //[Description("White")]
         Brown, 
-        //[Description("White")]
         Blue
     }
 }
