@@ -3,6 +3,7 @@ using CarShowroom.Bll.Interfaces;
 using CarShowroom.Bll.Models;
 using CarShowroom.Bll.Models.EngineDTOs;
 using CarShowroom.Dal.Entities;
+using CarShowroom.Dal.Enums;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
@@ -56,13 +57,13 @@ namespace CarShowroom.API.Controllers
         }
 
         [HttpGet("api/Engines")]
-        public async Task<ActionResult<IEnumerable<EngineDTO>>> GetEngines(Color color, int pageNumber = 1, int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<EngineDTO>>> GetEngines(int pageNumber = 1, int pageSize = 10, OrderEngineBy? orderEngine = null)
         {
             if (pageSize > maxEnginesPageSize)
             {
                 pageSize = maxEnginesPageSize;
             }
-            var (engines, paginationMetadata) = await _enginesService.GetEnginesAsync(pageNumber, pageSize);
+            var (engines, paginationMetadata) = await _enginesService.GetEnginesAsync(pageNumber, pageSize, orderEngine);
 
             Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(paginationMetadata));
 

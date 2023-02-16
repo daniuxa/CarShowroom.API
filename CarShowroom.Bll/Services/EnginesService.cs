@@ -1,6 +1,7 @@
 ﻿using CarShowroom.Bll.Interfaces;
 using CarShowroom.Dal.Contexts;
 using CarShowroom.Dal.Entities;
+using CarShowroom.Dal.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace CarShowroom.Bll.Services
             return await _carShowroomContext.Engines.FirstOrDefaultAsync(x => x.Id == engineId && x.CompanyName == companyName);
         }
 
-        public async Task<(IEnumerable<Engine>, PaginationMetadata)> GetEnginesAsync(int pageNumber = 1, int pageSize = 10)
+        public async Task<(IEnumerable<Engine>, PaginationMetadata)> GetEnginesAsync(int pageNumber = 1, int pageSize = 10, OrderEngineBy? orderEngine = null)
         {
             var collection = _carShowroomContext.Engines as IQueryable<Engine>;
 
@@ -35,11 +36,26 @@ namespace CarShowroom.Bll.Services
 
             var paginationMetadata = new PaginationMetadata(totalItemCount, pageSize, pageNumber);
 
-            var collectionToReturn = await collection.
+            var paginatedCollection = await collection.
                 Skip(pageSize * (pageNumber - 1)).
                 Take(pageSize).ToListAsync();
 
-            return (collectionToReturn, paginationMetadata);
+            if (orderEngine == null)
+            {
+                return (paginatedCollection, paginationMetadata);
+            }
+
+            var propertyInfo = typeof(Engine).GetProperty(orderEngine.ToString()!);
+
+            if (propertyInfo == null)
+            {
+                throw new ArgumentException($"Property {orderEngine} not found on type {typeof(Engine).Name}");
+            }
+
+            var orderedPaginatedCollection = paginatedCollection
+                .OrderBy(x => propertyInfo.GetValue(x));
+
+            return (orderedPaginatedCollection, paginationMetadata);
         }
 
         public async Task<Engine?> GetEngineAsync(int engineId)
