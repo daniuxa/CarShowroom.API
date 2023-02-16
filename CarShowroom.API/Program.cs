@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using System.Reflection;
+using System.Text.Json.Serialization;
 
 //TODO:
 //1) Make a controller for automobiles with a new diferent requests
@@ -28,9 +29,10 @@ builder.Logging.AddConsole();
 builder.Host.UseSerilog();
 // Add services to the container.
 
-builder.Services.AddControllers(configure => configure.ReturnHttpNotAcceptable = true).
-    AddNewtonsoftJson().
-    AddXmlSerializerFormatters();
+builder.Services.AddControllers(configure => configure.ReturnHttpNotAcceptable = true)
+    .AddNewtonsoftJson()
+    .AddXmlSerializerFormatters()
+    .AddJsonOptions(options => { options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(setupAction =>

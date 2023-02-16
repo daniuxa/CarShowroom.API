@@ -36,6 +36,7 @@ namespace CarShowroom.API.Controllers
 
             return Ok(_mapper.Map<IEnumerable<EngineWithoutCompanyDTO>>(engines));
         }
+
         [HttpGet("api/Companies/{companyName}/Engines/{engineId}")]
         public async Task<ActionResult<EngineWithoutCompanyDTO>> GetEngineFromCompany(string companyName, int engineId)
         {
@@ -55,7 +56,7 @@ namespace CarShowroom.API.Controllers
         }
 
         [HttpGet("api/Engines")]
-        public async Task<ActionResult<IEnumerable<EngineDTO>>> GetEngines(int pageNumber = 1, int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<EngineDTO>>> GetEngines(Color color, int pageNumber = 1, int pageSize = 10)
         {
             if (pageSize > maxEnginesPageSize)
             {
