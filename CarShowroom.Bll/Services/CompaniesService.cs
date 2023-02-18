@@ -55,9 +55,9 @@ namespace CarShowroom.Bll.Services
         /// <param name="includeEngines">Include engines collection or not</param>
         /// <param name="includeBrands">Include brands collection or not</param>
         /// <returns>Company or null if company haven't been found</returns>
-        public async Task<Company?> GetCompanyAsync(string name, bool includeEngines = false, bool includeBrands = false)
+        public async Task<Company?> GetCompanyAsync(string companyName, bool includeEngines = false, bool includeBrands = false)
         {
-            Company? company = await _carShowroomContext.Companies.FirstOrDefaultAsync(x => x.CompanyName == name);
+            Company? company = await _carShowroomContext.Companies.FirstOrDefaultAsync(x => x.CompanyName == companyName);
 
             if (company == null)
             {

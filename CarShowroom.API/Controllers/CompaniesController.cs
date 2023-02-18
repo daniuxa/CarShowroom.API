@@ -32,7 +32,15 @@ namespace CarShowroom.API
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
+        /// <summary>
+        /// Receive collection of companies
+        /// </summary>
+        /// <param name="pageNumber">Number of page which we want to receive</param>
+        /// <param name="pageSize">Size of pages</param>
+        /// <returns>Collection of companies</returns>
+        /// <response code="200">Returned collection of brands</response>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetCompanies(int pageNumber = 1, int pageSize = 10)
         {
             if (pageSize > maxCitiesPageSize)
@@ -40,17 +48,24 @@ namespace CarShowroom.API
                 pageSize = maxCitiesPageSize;
             }
             var (Companies, paginationMetadata) = await _companiesService.GetCompaniesAsync(pageNumber, pageSize);
-            if (Companies == null || Companies.Count() == 0)
-            {
-                return NoContent();
-            }
 
             Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(paginationMetadata));
 
             return Ok(_mapper.Map<IEnumerable<CompanyDTO>>(Companies));
         }
 
+        /// <summary>
+        /// Receive company
+        /// </summary>
+        /// <param name="companyName">Name of the company</param>
+        /// <param name="includeEngines">Include engines or not</param>
+        /// <param name="includeBrands">Include brands or not</param>
+        /// <returns>Company model</returns>
+        /// /// <response code="200">Returned company with or without collections</response>
+        /// <response code="404">Haven't found company</response>
         [HttpGet("{companyName}", Name = "GetCompany")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetCompany(string companyName, bool includeEngines = false, bool includeBrands = false)
         {
             var company = await _companiesService.GetCompanyAsync(companyName, includeEngines, includeBrands);
@@ -75,7 +90,14 @@ namespace CarShowroom.API
             return Ok(_mapper.Map<CompanyWithCollectionsDTO>(company));
         }
 
+        /// <summary>
+        /// Add company to data base
+        /// </summary>
+        /// <param name="company">Company for adding</param>
+        /// <returns>Added company</returns>
+        /// <response code="201">Added company to data base</response>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<CompanyDTO>> CreateCompany(CompanyCreationDTO company)
         {
             var finalCompany = _mapper.Map<Company>(company);
@@ -89,7 +111,16 @@ namespace CarShowroom.API
             return CreatedAtRoute("GetCompany", new {companyName = company.CompanyName}, companyToReturn);
         }
 
+        /// <summary>
+        /// Delete company from data base
+        /// </summary>
+        /// <param name="companyName">Name of company</param>
+        /// <returns>IActionResult</returns>
+        /// <response code="204">Deleted company from data base</response>
+        /// <response code="404">Haven't found company</response>
         [HttpDelete("{companyName}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteCompany(string companyName)
         {
             var companyEntity = await _companiesService.GetCompanyAsync(companyName);
@@ -105,6 +136,15 @@ namespace CarShowroom.API
 
             return NoContent();
         }
+
+        /// <summary>
+        /// Update of company
+        /// </summary>
+        /// <param name="companyName">Name of company</param>
+        /// <param name="company">New company</param>
+        /// <returns>IActionResult</returns>
+        /// <response code="204">Updated company</response>
+        /// <response code="404">Haven't found company</response>
         [HttpPut("{companyName}")]
         public async Task<IActionResult> UpdateCompany(string companyName, CompanyForUpdateDTO company)
         {

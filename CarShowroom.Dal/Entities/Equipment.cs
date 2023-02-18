@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace CarShowroom.Dal.Entities
 {
+    /// <summary>
+    /// Equipment class
+    /// </summary>
     public class Equipment
     {
         /// <summary>

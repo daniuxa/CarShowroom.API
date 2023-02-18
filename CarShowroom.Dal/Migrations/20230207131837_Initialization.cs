@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CarShowroom.Dal.Migrations
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public partial class Initialization : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -212,4 +213,5 @@ namespace CarShowroom.Dal.Migrations
                 name: "Companies");
         }
     }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 }

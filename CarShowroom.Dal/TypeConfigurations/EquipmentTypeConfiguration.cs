@@ -9,11 +9,12 @@ using System.Threading.Tasks;
 
 namespace CarShowroom.Dal.TypeConfigurations
 {
+    /// <summary>
+    /// Fluent api configuration of equipment entity
+    /// </summary>
     public class EquipmentTypeConfiguration : IEntityTypeConfiguration<Equipment>
     {
-        /// <summary>
-        /// Fluent api configuration of equipment entity
-        /// </summary>
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public void Configure(EntityTypeBuilder<Equipment> builder)
         {
             builder.HasOne(x => x.Model).WithMany(y => y.Equipments).OnDelete(DeleteBehavior.Restrict);
@@ -21,5 +22,6 @@ namespace CarShowroom.Dal.TypeConfigurations
             builder.HasCheckConstraint("CK_Equipment_Price", "Price >= 0");
 
         }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }
