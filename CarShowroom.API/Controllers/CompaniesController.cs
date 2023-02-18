@@ -9,19 +9,27 @@ using System.Text.Json;
 
 namespace CarShowroom.API
 {
+    /// <summary>
+    /// Controller to work with companies entity
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class CompaniesController : ControllerBase
     {
         private readonly ICompaniesService _companiesService;
         private readonly IMapper _mapper;
-
         const int maxCitiesPageSize = 50;
 
+        /// <summary>
+        /// Constructor of controller 
+        /// </summary>
+        /// <param name="companiesService">Company service</param>
+        /// <param name="mapper">Auto mapper</param>
+        /// <exception cref="ArgumentNullException">If parameter is null</exception>
         public CompaniesController(ICompaniesService companiesService, IMapper mapper)
         {
             _companiesService = companiesService ?? throw new ArgumentNullException(nameof(companiesService));
-            _mapper = mapper;
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet]

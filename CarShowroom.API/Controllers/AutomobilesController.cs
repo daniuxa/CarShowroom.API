@@ -35,8 +35,9 @@ namespace CarShowroom.API.Controllers
         /// <param name="pageNumber">Number of page which we want to receive</param>
         /// <param name="pageSize">Size of pages</param>
         /// <returns>Collection of automobiles</returns>
-        /// 
+        /// <response code="200">Returned collection of automobiles</response>
         [HttpGet("api/Automobiles")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<AutomobileDTO>>> GetAutomobiles(int pageNumber = 1, int pageSize = 10)
         {
             if (pageSize > maxAutomobilesPageSize)
