@@ -8,19 +8,48 @@ using System.Threading.Tasks;
 
 namespace CarShowroom.Dal.Contexts
 {
+    /// <summary>
+    /// CarShowroomContext represent data base cntext to work with data base
+    /// </summary>
     public class CarShowroomContext : DbContext
     {
+        /// <summary>
+        /// DbSet of automobiles
+        /// </summary>
         public DbSet<Automobile> Automobiles { get; set; } = null!;
+        /// <summary>
+        /// DbSet of brands
+        /// </summary>
         public DbSet<Brand> Brands { get; set; } = null!;
+        /// <summary>
+        /// DbSet of companies
+        /// </summary>
         public DbSet<Company> Companies { get; set; } = null!;
+        /// <summary>
+        /// DbSet of engines
+        /// </summary>
         public DbSet<Engine> Engines { get; set; } = null!;
+        /// <summary>
+        /// DbSet of equipments
+        /// </summary>
         public DbSet<Equipment> Equipments { get; set; } = null!;
+        /// <summary>
+        /// DbSet of models
+        /// </summary>
         public DbSet<Model> Models { get; set; } = null!;
 
+        /// <summary>
+        /// Context class constructor
+        /// </summary>
+        /// <param name="options"></param>
         public CarShowroomContext(DbContextOptions<CarShowroomContext> options) : base(options)
         {
         }
 
+        /// <summary>
+        /// Configuring entities when data base is creating
+        /// </summary>
+        /// <param name="modelBuilder">Model builder entity by what we are able to configuring entities</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(CarShowroomContext).Assembly);

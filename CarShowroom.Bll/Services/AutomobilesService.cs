@@ -10,14 +10,29 @@ using System.Threading.Tasks;
 
 namespace CarShowroom.Bll.Services
 {
-    public class AutomobilesService : IAutomobileService
+    /// <summary>
+    /// Automobile service
+    /// </summary>
+    public class AutomobilesService : IAutomobilesService
     {
         private readonly CarShowroomContext _carShowroomContext;
 
+        /// <summary>
+        /// Constructor of automobile service
+        /// </summary>
+        /// <param name="carShowroomContext">Car showroom data base context</param>
+        /// <exception cref="ArgumentNullException">If carShowroom == null</exception>
         public AutomobilesService(CarShowroomContext carShowroomContext)
         {
-            _carShowroomContext = carShowroomContext;
+            _carShowroomContext = carShowroomContext ?? throw new ArgumentNullException(nameof(carShowroomContext));
         }
+
+        /// <summary>
+        /// Receiving automobiles from data base with pagination
+        /// </summary>
+        /// <param name="pageNumber">Number of which page we want to receive</param>
+        /// <param name="pageSize">Size of pages</param>
+        /// <returns>Collection of automobiles and data about pagination</returns>
         public async Task<(IEnumerable<Automobile>, PaginationMetadata)> GetAutomobilesAsync(int pageNumber = 1, int pageSize = 10)
         {
             var collection = _carShowroomContext.Automobiles

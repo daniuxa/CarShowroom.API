@@ -11,6 +11,9 @@ namespace CarShowroom.Dal.TypeConfigurations
 {
     public class ModelTypeConfiguration : IEntityTypeConfiguration<Model>
     {
+        /// <summary>
+        /// Fluent api configuration of model entity
+        /// </summary>
         public void Configure(EntityTypeBuilder<Model> builder)
         {
             builder.HasOne(x => x.Brand).WithMany(y => y.Models).OnDelete(DeleteBehavior.Restrict);

@@ -4,5 +4,18 @@
         <name>CarShowroom.API</name>
     </assembly>
     <members>
+        <member name="T:CarShowroom.API.Controllers.AutomobilesController">
+            <summary>
+            eknalcs;
+            </summary>
+        </member>
+        <member name="M:CarShowroom.API.Controllers.AutomobilesController.GetAutomobiles(System.Int32,System.Int32)">
+            <summary>
+            wsdgsfe
+            </summary>
+            <param name="pageNumber">eee</param>
+            <param name="pageSize">eee</param>
+            <returns>eeee</returns>
+        </member>
     </members>
 </doc>

@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace CarShowroom.Dal.TypeConfigurations
 {
+    /// <summary>
+    /// Fluent api configuration of automobile entity
+    /// </summary>
     public class AutomobileTypeConfiguration : IEntityTypeConfiguration<Automobile>
     {
         public void Configure(EntityTypeBuilder<Automobile> builder)

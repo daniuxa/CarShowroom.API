@@ -9,8 +9,14 @@ using System.Threading.Tasks;
 
 namespace CarShowroom.Bll.Profiles
 {
+    /// <summary>
+    /// Automobiles profile for AutoMapper
+    /// </summary>
     public class AutomobilesProfile : Profile
     {
+        /// <summary>
+        /// Constructor for profiler
+        /// </summary>
         public AutomobilesProfile()
         {
             CreateMap<Automobile, AutomobileDTO>()

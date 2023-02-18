@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace CarShowroom.Dal.Enums
 {
+    /// <summary>
+    /// By what we want ordering engines
+    /// </summary>
     public enum OrderEngineBy
     {
         Name,

@@ -1,3 +1,4 @@
+using CarShowroom.API;
 using CarShowroom.Bll.Interfaces;
 using CarShowroom.Bll.Services;
 using CarShowroom.Dal.Contexts;
@@ -8,7 +9,6 @@ using System.Reflection;
 using System.Text.Json.Serialization;
 
 //TODO:
-//1) Make a controller for automobiles with a new diferent requests
 //2) Make a xml comments
 //3) Add API security
 //4) Add a mail service
@@ -41,12 +41,22 @@ builder.Services.AddSwaggerGen(setupAction =>
     {
         Title = "CarShowroom API",
         Version = "v1",
+        Description = "Through this API you can access to CarShowroom database and make CRUD operation with entities",
+        Contact = new() 
+        {
+            Email = "daniakroos8@gmail.com",
+            Name = "Danyil Salivon"
+        }
     });
 
-    var xmlCommentsFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    var xmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentsFile);
+    /*var xmlCommentsFileApi = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlCommentsFullPathApi = Path.Combine(AppContext.BaseDirectory, xmlCommentsFileApi);*/
 
-    setupAction.IncludeXmlComments(xmlCommentsFullPath);
+    setupAction.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{Assembly.Load("CarShowroom.API").GetName().Name}.xml"));
+    setupAction.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{Assembly.Load("CarShowroom.Bll").GetName().Name}.xml"));
+    setupAction.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{Assembly.Load("CarShowroom.Dal").GetName().Name}.xml"));
+
+    //setupAction.SchemaFilter<EnumTypesSchemaFilter>(xmlCommentsFullPathApi);
 });
 builder.Services.AddDbContext<CarShowroomContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -55,7 +65,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<ICompaniesService, CompaniesService>();
 builder.Services.AddScoped<IEnginesService, EnginesService>();
 builder.Services.AddScoped<IBrandsService, BrandsService>();
-builder.Services.AddScoped<IAutomobileService, AutomobilesService>();
+builder.Services.AddScoped<IAutomobilesService, AutomobilesService>();
 
 var app = builder.Build();
 

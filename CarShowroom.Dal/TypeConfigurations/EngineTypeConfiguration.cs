@@ -11,6 +11,9 @@ namespace CarShowroom.Dal.TypeConfigurations
 {
     public class EngineTypeConfiguration : IEntityTypeConfiguration<Engine>
     {
+        /// <summary>
+        /// Fluent api configuration of engine entity
+        /// </summary>
         public void Configure(EntityTypeBuilder<Engine> builder)
         {
             builder.HasOne(x => x.Company).WithMany(y => y.Engines).OnDelete(DeleteBehavior.Cascade);

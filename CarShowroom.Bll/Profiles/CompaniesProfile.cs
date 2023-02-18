@@ -10,13 +10,19 @@ using System.Threading.Tasks;
 
 namespace CarShowroom.Bll.Profiles
 {
+    /// <summary>
+    /// Companies profile for AutoMapper
+    /// </summary>
     public class CompaniesProfile : Profile
     {
+        /// <summary>
+        /// Constructor for profiler
+        /// </summary>
         public CompaniesProfile()
         {
-            CreateMap<Company, CompanyWithoutCollectionsDTO>();
-            CreateMap<Company, CompanyWithoutBrandsDTO>();
-            CreateMap<Company, CompanyWithoutEnginesDTO>();
+            CreateMap<Company, CompanyWithCollectionsDTO>();
+            CreateMap<Company, CompanyWithEnginesDTO>();
+            CreateMap<Company, CompanyWithBrandsDTO>();
             CreateMap<Company, CompanyDTO>();
             CreateMap<CompanyCreationDTO, Company>();
             CreateMap<CompanyForUpdateDTO, Company>();

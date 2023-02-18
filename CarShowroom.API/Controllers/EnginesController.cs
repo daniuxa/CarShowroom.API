@@ -92,7 +92,7 @@ namespace CarShowroom.API.Controllers
             }*/
             var finalEngine = _mapper.Map<Engine>(engine);
 
-            await _enginesService.AddEngine(finalEngine);
+            await _enginesService.AddEngineAsync(finalEngine);
 
             await _enginesService.SaveChangesAsync();
 
