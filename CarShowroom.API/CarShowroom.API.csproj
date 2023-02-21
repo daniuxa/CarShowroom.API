@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <DocumentationFile>CarShowroom.API.xml</DocumentationFile>
+	<IncludeOpenAPIAnalzers>true</IncludeOpenAPIAnalzers>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,6 +26,10 @@
   <ItemGroup>
     <ProjectReference Include="..\CarShowroom.Bll\CarShowroom.Bll.csproj" />
     <ProjectReference Include="..\CarShowroom.Dal\CarShowroom.Dal.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\NewFolder\" />
   </ItemGroup>
 
 </Project>

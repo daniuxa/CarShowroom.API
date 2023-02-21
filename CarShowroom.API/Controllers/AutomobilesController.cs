@@ -11,6 +11,7 @@ namespace CarShowroom.API.Controllers
     /// Controllers to work with automobile entity
     /// </summary>
     [ApiController]
+    [Produces("application/json", "application/xml")]
     public class AutomobilesController : ControllerBase
     {
         private const int maxAutomobilesPageSize = 50;

@@ -14,6 +14,7 @@ namespace CarShowroom.API
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
+    [Produces("application/json", "application/xml")]
     public class CompaniesController : ControllerBase
     {
         private readonly ICompaniesService _companiesService;
@@ -98,6 +99,7 @@ namespace CarShowroom.API
         /// <response code="201">Added company to data base</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [Consumes("application/json", "application/xml")]
         public async Task<ActionResult<CompanyDTO>> CreateCompany(CompanyCreationDTO company)
         {
             var finalCompany = _mapper.Map<Company>(company);

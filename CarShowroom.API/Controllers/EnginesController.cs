@@ -14,6 +14,7 @@ namespace CarShowroom.API.Controllers
     /// Controller to work with engine entity
     /// </summary>
     [ApiController]
+    [Produces("application/json", "application/xml")]
     public class EnginesController : ControllerBase
     {
         private readonly ICompaniesService _companiesService;
@@ -139,6 +140,7 @@ namespace CarShowroom.API.Controllers
         /// <response code="201">Added engine to data base</response>
         [HttpPost("api/Engines")]
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [Consumes("application/json", "application/xml")]
         public async Task<ActionResult<EngineDTO>> CreateEngine(EngineCreationDTO engine)
         {
             /*if (engine.CompanyName != null && !await _companiesService.IsExistCompanyAsync(engine.CompanyName))

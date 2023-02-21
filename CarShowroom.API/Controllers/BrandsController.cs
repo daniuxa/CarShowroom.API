@@ -14,6 +14,7 @@ namespace CarShowroom.API.Controllers
     /// Controller to work with brand entity
     /// </summary>
     [ApiController]
+    [Produces("application/json", "application/xml")]
     public class BrandsController : ControllerBase
     {
         private readonly IBrandsService _brandsService;
@@ -116,6 +117,7 @@ namespace CarShowroom.API.Controllers
         /// <response code="201">Added brand to data base</response>
         [HttpPost("api/Brands")]
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [Consumes ("application/json", "application/xml")]
         public async Task<ActionResult<BrandDTO>> CreateBrand(BrandCreationDTO brand)
         {
             var finalBrand = _mapper.Map<Brand>(brand);

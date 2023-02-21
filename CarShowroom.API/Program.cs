@@ -2,6 +2,7 @@ using CarShowroom.API;
 using CarShowroom.Bll.Interfaces;
 using CarShowroom.Bll.Services;
 using CarShowroom.Dal.Contexts;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
@@ -29,8 +30,14 @@ builder.Logging.AddConsole();
 builder.Host.UseSerilog();
 // Add services to the container.
 
-builder.Services.AddControllers(configure => configure.ReturnHttpNotAcceptable = true)
-    .AddNewtonsoftJson()
+builder.Services.AddControllers(configure => 
+{ 
+    configure.ReturnHttpNotAcceptable = true;
+    configure.Filters.Add(new ProducesResponseTypeAttribute(StatusCodes.Status400BadRequest));
+    configure.Filters.Add(new ProducesResponseTypeAttribute(StatusCodes.Status500InternalServerError));
+    configure.Filters.Add(new ProducesResponseTypeAttribute(StatusCodes.Status406NotAcceptable));
+
+}).AddNewtonsoftJson()
     .AddXmlSerializerFormatters()
     .AddJsonOptions(options => { options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
