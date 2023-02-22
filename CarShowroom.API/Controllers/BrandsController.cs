@@ -82,6 +82,7 @@ namespace CarShowroom.API.Controllers
             return Ok(_mapper.Map<IEnumerable<BrandWithoutCompNameDTO>>(brands));
         }
 
+        #region Test for vendor type
         /*/// <summary>
         /// Receive brand 
         /// </summary>
@@ -157,6 +158,8 @@ namespace CarShowroom.API.Controllers
 
             return Ok(_mapper.Map<BrandWithModelsDTO>(brand));
         }
+
+        #endregion
 
         /// <summary>
         /// Add a brand to data base
