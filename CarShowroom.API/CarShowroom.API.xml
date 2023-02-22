@@ -58,14 +58,22 @@
             <response code="200">Returned collection of brands</response>
             <response code="404">Haven't found company</response>
         </member>
-        <member name="M:CarShowroom.API.Controllers.BrandsController.GetBrand(System.Int32,System.Boolean)">
+        <member name="M:CarShowroom.API.Controllers.BrandsController.GetBrandWithoutModels(System.Int32)">
+            <summary>
+            Receive brand without models
+            </summary>
+            <param name="brandId">Id of brand</param>
+            <returns>Brand which has this Id</returns>
+            <response code="200">Returned brand without models collection</response>
+            <response code="404">Haven't found brand</response>
+        </member>
+        <member name="M:CarShowroom.API.Controllers.BrandsController.GetBrandWithModels(System.Int32)">
             <summary>
             Receive brand 
             </summary>
             <param name="brandId">Id of brand</param>
-            <param name="includeModels">Include or not models into brand</param>
             <returns>Brand which has this Id</returns>
-            <response code="200">Returned brand with or without models collection</response>
+            <response code="200">Returned brand with models collection</response>
             <response code="404">Haven't found brand</response>
         </member>
         <member name="M:CarShowroom.API.Controllers.BrandsController.CreateBrand(CarShowroom.Bll.Models.BrandDTOs.BrandCreationDTO)">

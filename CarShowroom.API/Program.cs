@@ -1,5 +1,6 @@
 using CarShowroom.API;
 using CarShowroom.Bll.Interfaces;
+using CarShowroom.Bll.OperationFilters;
 using CarShowroom.Bll.Services;
 using CarShowroom.Dal.Contexts;
 using Microsoft.AspNetCore.Mvc;
@@ -56,8 +57,12 @@ builder.Services.AddSwaggerGen(setupAction =>
         }
     });
 
-    /*var xmlCommentsFileApi = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    var xmlCommentsFullPathApi = Path.Combine(AppContext.BaseDirectory, xmlCommentsFileApi);*/
+/*    setupAction.ResolveConflictingActions(apiDescription => 
+    { 
+        return apiDescription.First(); 
+    });*/
+
+    setupAction.OperationFilter<GetBrandOperationFilter>();
 
     setupAction.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{Assembly.Load("CarShowroom.API").GetName().Name}.xml"));
     setupAction.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{Assembly.Load("CarShowroom.Bll").GetName().Name}.xml"));

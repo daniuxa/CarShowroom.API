@@ -14,7 +14,6 @@ namespace CarShowroom.API.Controllers
     /// Controller to work with brand entity
     /// </summary>
     [ApiController]
-    [Produces("application/json", "application/xml")]
     public class BrandsController : ControllerBase
     {
         private readonly IBrandsService _brandsService;
@@ -44,6 +43,7 @@ namespace CarShowroom.API.Controllers
         /// <returns>Collection of brands</returns>
         /// <response code="200">Returned collection of brands</response>
         [HttpGet("api/Brands")]
+        [Produces("application/json", "application/xml")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<BrandDTO>>> GetBrands(int pageNumber = 1, int pageSize = 10)
         {
@@ -68,6 +68,7 @@ namespace CarShowroom.API.Controllers
         /// <response code="404">Haven't found company</response>
         [HttpGet("api/Companies/{companyName}/Brands")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [Produces("application/json", "application/xml")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IEnumerable<BrandWithoutCompNameDTO>>> GetBrandsForCompany(string companyName)
         {
@@ -81,7 +82,7 @@ namespace CarShowroom.API.Controllers
             return Ok(_mapper.Map<IEnumerable<BrandWithoutCompNameDTO>>(brands));
         }
 
-        /// <summary>
+        /*/// <summary>
         /// Receive brand 
         /// </summary>
         /// <param name="brandId">Id of brand</param>
@@ -107,6 +108,54 @@ namespace CarShowroom.API.Controllers
             }
 
             return Ok(_mapper.Map<BrandDTO>(brand));
+        }*/
+
+        /// <summary>
+        /// Receive brand without models
+        /// </summary>
+        /// <param name="brandId">Id of brand</param>
+        /// <returns>Brand which has this Id</returns>
+        /// <response code="200">Returned brand without models collection</response>
+        /// <response code="404">Haven't found brand</response>
+        [HttpGet("api/Brands/{brandId}", Name = "GetBrand")]
+        [Produces("application/json", "application/xml", "application/vnd.media.brandwithoutmodels+json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<BrandDTO>> GetBrandWithoutModels(int brandId)
+        {
+            var brand = await _brandsService.GetBrandAsync(brandId);
+
+            if (brand == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(_mapper.Map<BrandDTO>(brand));
+        }
+
+
+        /// <summary>
+        /// Receive brand 
+        /// </summary>
+        /// <param name="brandId">Id of brand</param>
+        /// <returns>Brand which has this Id</returns>
+        /// <response code="200">Returned brand with models collection</response>
+        /// <response code="404">Haven't found brand</response>
+        [HttpGet("api/Brands/{brandId}")]
+        [Produces("application/vnd.media.brandwithmodels+json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public async Task<ActionResult<BrandWithModelsDTO>> GetBrandWithModels(int brandId)
+        {
+            var brand = await _brandsService.GetBrandAsync(brandId, includeModels : true);
+
+            if (brand == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(_mapper.Map<BrandWithModelsDTO>(brand));
         }
 
         /// <summary>
@@ -117,6 +166,7 @@ namespace CarShowroom.API.Controllers
         /// <response code="201">Added brand to data base</response>
         [HttpPost("api/Brands")]
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [Produces("application/json", "application/xml")]
         [Consumes ("application/json", "application/xml")]
         public async Task<ActionResult<BrandDTO>> CreateBrand(BrandCreationDTO brand)
         {
@@ -141,6 +191,7 @@ namespace CarShowroom.API.Controllers
         [HttpDelete("api/Brands/{brandId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Produces("application/json", "application/xml")]
         public async Task<IActionResult> DeleteBrand(int brandId)
         {
             var brandEntity = await _brandsService.GetBrandAsync(brandId);
@@ -181,6 +232,7 @@ namespace CarShowroom.API.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Produces("application/json", "application/xml")]
         public async Task<IActionResult> PartiallyUpdateBrand(int brandId, JsonPatchDocument<BrandUpdateDTO> patchDocument)
         {
             var brandEntity = await _brandsService.GetBrandAsync(brandId);
