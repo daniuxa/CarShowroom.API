@@ -1,16 +1,19 @@
 ﻿using CarShowroom.Bll.Models.BrandDTOs;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarShowroom.Bll.OperationFilters
 {
+    /// <summary>
+    /// Operation filter, used for adding schema for multiple endpoints
+    /// </summary>
     public class GetBrandOperationFilter : IOperationFilter
     {
+        /// <summary>
+        /// Adding schemas
+        /// </summary>
+        /// <param name="operation">Operation which we want configure</param>
+        /// <param name="context">Context of operation</param>
         public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
             if (operation.OperationId != "GetBrand")

@@ -2,11 +2,6 @@
 using CarShowroom.Dal.Contexts;
 using CarShowroom.Dal.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarShowroom.Bll.Services
 {
@@ -38,7 +33,7 @@ namespace CarShowroom.Bll.Services
             var collection = _carShowroomContext.Automobiles
                 .Include(x => x.Brand)
                 .Include(x => x.Model)
-                .Include(x => x.Equipment) 
+                .Include(x => x.Equipment)
                 as IQueryable<Automobile>;
 
             var totalItemCount = await collection.CountAsync();

@@ -129,7 +129,7 @@ namespace CarShowroom.API.Controllers
                 return NotFound();
             }
 
-            return Ok(_mapper.Map<EngineDTO>(engine));  
+            return Ok(_mapper.Map<EngineDTO>(engine));
         }
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace CarShowroom.API.Controllers
 
             var createdEngineToReturn = _mapper.Map<EngineDTO>(finalEngine);
 
-            return CreatedAtRoute("GetEngine", new {engineId = createdEngineToReturn.Id}, createdEngineToReturn);
+            return CreatedAtRoute("GetEngine", new { engineId = createdEngineToReturn.Id }, createdEngineToReturn);
         }
 
         /// <summary>

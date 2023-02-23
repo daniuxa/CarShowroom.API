@@ -3,7 +3,6 @@ using CarShowroom.Bll.Interfaces;
 using CarShowroom.Bll.Models;
 using CarShowroom.Bll.Models.BrandDTOs;
 using CarShowroom.Dal.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
@@ -149,7 +148,7 @@ namespace CarShowroom.API.Controllers
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<ActionResult<BrandWithModelsDTO>> GetBrandWithModels(int brandId)
         {
-            var brand = await _brandsService.GetBrandAsync(brandId, includeModels : true);
+            var brand = await _brandsService.GetBrandAsync(brandId, includeModels: true);
 
             if (brand == null)
             {
@@ -170,7 +169,7 @@ namespace CarShowroom.API.Controllers
         [HttpPost("api/Brands")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [Produces("application/json", "application/xml")]
-        [Consumes ("application/json", "application/xml")]
+        [Consumes("application/json", "application/xml")]
         public async Task<ActionResult<BrandDTO>> CreateBrand(BrandCreationDTO brand)
         {
             var finalBrand = _mapper.Map<Brand>(brand);
@@ -181,7 +180,7 @@ namespace CarShowroom.API.Controllers
 
             var createdBrandToReturn = _mapper.Map<BrandDTO>(finalBrand);
 
-            return CreatedAtRoute("GetBrand", new {brandId = createdBrandToReturn.Id}, createdBrandToReturn);
+            return CreatedAtRoute("GetBrand", new { brandId = createdBrandToReturn.Id }, createdBrandToReturn);
         }
 
         /// <summary>

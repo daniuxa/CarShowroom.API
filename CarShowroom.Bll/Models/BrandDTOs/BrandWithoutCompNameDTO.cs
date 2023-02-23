@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CarShowroom.Bll.Models
+﻿namespace CarShowroom.Bll.Models
 {
     /// <summary>
     /// Brand DTO which doesn't contain name of the company

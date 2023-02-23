@@ -1,10 +1,5 @@
 ﻿using CarShowroom.Dal.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarShowroom.Dal.Contexts
 {
@@ -125,8 +120,8 @@ namespace CarShowroom.Dal.Contexts
                 });
 
             modelBuilder.Entity<Equipment>().HasData(
-                new Equipment() 
-                { 
+                new Equipment()
+                {
                     Id = 1,
                     Name = "Comfort",
                     EngineId = 1,

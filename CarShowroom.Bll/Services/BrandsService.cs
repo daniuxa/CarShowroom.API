@@ -1,13 +1,7 @@
 ﻿using CarShowroom.Bll.Interfaces;
-using CarShowroom.Bll.Models;
 using CarShowroom.Dal.Contexts;
 using CarShowroom.Dal.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarShowroom.Bll.Services
 {

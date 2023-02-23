@@ -3,7 +3,6 @@ using CarShowroom.Bll.Interfaces;
 using CarShowroom.Bll.Models;
 using CarShowroom.Bll.Models.CompanyDTOs;
 using CarShowroom.Dal.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 
@@ -87,7 +86,7 @@ namespace CarShowroom.API
             {
                 return Ok(_mapper.Map<CompanyDTO>(company));
             }
-            
+
             return Ok(_mapper.Map<CompanyWithCollectionsDTO>(company));
         }
 
@@ -110,7 +109,7 @@ namespace CarShowroom.API
 
             var companyToReturn = _mapper.Map<CompanyDTO>(finalCompany);
 
-            return CreatedAtRoute("GetCompany", new {companyName = company.CompanyName}, companyToReturn);
+            return CreatedAtRoute("GetCompany", new { companyName = company.CompanyName }, companyToReturn);
         }
 
         /// <summary>

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using CarShowroom.Bll.Interfaces;
 using CarShowroom.Bll.Models.AutomobilesDTOs;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 

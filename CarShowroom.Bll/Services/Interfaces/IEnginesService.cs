@@ -1,11 +1,6 @@
 ﻿using CarShowroom.Bll.Services;
 using CarShowroom.Dal.Entities;
 using CarShowroom.Dal.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarShowroom.Bll.Interfaces
 {
